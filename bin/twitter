@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var commander = require( 'commander' );
+var oauth     = require( 'oauth' ).OAuth;
 
 commander
 	.version( '0.0.0' )
@@ -11,3 +12,5 @@ commander
 	.action( function() {
 		console.log( 'Hi' );
 	} );
+
+commander.parse( process.argv );
