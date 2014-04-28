@@ -1,0 +1,11 @@
+{
+	"name": "Twitter",
+	"version": "0.0.0",
+	"engines": {
+		"npm": "*",
+		"node": "*"
+	},
+	"dependencies": {
+		"commander": "*"
+	}
+}
