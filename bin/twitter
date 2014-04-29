@@ -17,11 +17,12 @@ twitterOAuth.get(
 	'https://api.twitter.com/1.1/trends/place.json?id=23424977',
 	key.token.key,
 	key.token.secret,
-	function ( e, data, res ) {
-		if ( e ) {
-			console.log( e );
-		} else {
+	function ( error, data, response, body ) {
+		if ( !error && response.statusCode === 200 ) {
 			console.log( data );
+			console.log( body );
+		} else {
+			console.log( error );
 		}
 	} );
 
