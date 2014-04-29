@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var commander = require( 'commander' );
+var request   = require( 'request' );
+var open      = require( 'open' );
 var OAuth     = require( 'oauth' ).OAuth;
 var key       = require( '../config.json' );
 
@@ -25,20 +27,31 @@ commander
 
 commander
 	.command( 'oauth' )
-	.description( 'OAuth' )
+	.description( 'Authenticates the application to use Twitter' )
 	.action( function () {
-		twitterOAuth.getOAuthRequestToken( function ( error, OAuthToken, OAuthSecret, results ) {
-			var url = 'https://twitter.com/oauth/authenticate?oauth_token=' + OAuthToken;
+		twitterOAuth.getOAuthRequestToken(
+			function ( error, OAuthToken, OAuthSecret, results ) {
+				var url = 'https://twitter.com/oauth/authenticate?oauth_token=' + OAuthToken;
 
-			if ( error ) {
-				console.log( error );
-			} else {
-				console.log( 'OAuthToken: ' + OAuthToken );
-				console.log( 'OAuthSecret: ' + OAuthSecret );
-				console.log( results );
-				console.log( url );
-			}
-		} );
+				if ( error ) {
+					console.log( error );
+				} else {
+					console.log( 'OAuthToken: ' + OAuthToken );
+					console.log( 'OAuthSecret: ' + OAuthSecret );
+					console.log( results );
+					console.log( url );
+					open( url );
+				}
+			} );
+	} );
+
+commander
+	.command( 'pin [pin]' )
+	.description( 'PIN entry' )
+	.action( function ( OAuthPin ) {
+		var url = 'https://twitter.com/oauth/access_token?oauth_verifier=' + OAuthPin;
+
+		console.log( url );
 	} );
 
 commander.parse( process.argv );
