@@ -36,10 +36,6 @@ commander
 				if ( error ) {
 					console.log( error );
 				} else {
-					console.log( 'OAuthToken: ' + OAuthToken );
-					console.log( 'OAuthSecret: ' + OAuthSecret );
-					console.log( results );
-					console.log( url );
 					open( url );
 				}
 			} );
