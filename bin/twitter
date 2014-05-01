@@ -46,7 +46,16 @@ commander
 					console.log( error );
 				}
 
-				console.log( 'You are ' + data.name + ', aka @' + data.screen_name );
+				console.log( ' ----------------------------------------' );
+				console.log( '|               User Details             |' );
+				console.log( ' ----------------------------------------' );
+				console.log( ' ----------------------------------------' );
+				console.log( '  Full name         | ' + data.name );
+				console.log( '  Screen name       | ' + data.screen_name );
+				console.log( '  Tweets            | ' + data.statuses_count );
+				console.log( '  Following         | ' + data.friends_count );
+				console.log( '  Followers         | ' + data.followers_count );
+				console.log( ' ----------------------------------------' );
 			}
 		);
 	} );
