@@ -1,0 +1,10 @@
+{
+	"consumer" : {
+		"key" : "<CONSUMER KEY HERE>",
+		"secret" : "<CONSUMER SECRET HERE>"
+	},
+	"token" : {
+		"key" : "<TOKEN KEY HERE>",
+		"secret" : "<TOKEN SECRET HERE>"
+	}
+}
