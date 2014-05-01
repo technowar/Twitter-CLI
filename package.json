@@ -7,8 +7,6 @@
 	},
 	"dependencies": {
 		"commander": "*",
-		"request": "*",
-		"oauth": "*",
-		"open": "*"
+		"oauth": "*"
 	}
 }
