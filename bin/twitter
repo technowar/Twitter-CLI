@@ -34,7 +34,7 @@ commander
 	} );
 
 commander
-	.command( 'account' )
+	.command( 'user' )
 	.description( 'Shows user details' )
 	.action( function () {
 		getOAuth(
@@ -56,6 +56,51 @@ commander
 				console.log( '  Following         | ' + data.friends_count );
 				console.log( '  Followers         | ' + data.followers_count );
 				console.log( ' ----------------------------------------' );
+			}
+		);
+	} );
+
+commander
+	.command( 'favorites' )
+	.description( 'Displays recent favorited tweets' )
+	.action( function () {
+		getOAuth(
+			'https://api.twitter.com/1.1/favorites/list.json',
+			function ( error, response, body ) {
+				var data = JSON.parse( response );
+
+				if ( error ) {
+					console.log( error );
+				}
+
+				for ( var x in data ) {
+					console.log( data[ x ].user.name + ' [@' + data[ x ].user.screen_name + '], ' + data[ x ].created_at );
+					console.log( data[ x ].text );
+					console.log( '\n' );
+				}
+			}
+		);
+	} );
+
+commander
+	.command( 'fave [screen name]' )
+	.description( 'Displays recent favorited tweets for the specified user' )
+	.action( function ( screen_name ) {
+		var url = 'https://api.twitter.com/1.1/favorites/list.json?screen_name=' + screen_name;
+		getOAuth(
+			url,
+			function ( error, response, body ) {
+				var data = JSON.parse( response );
+
+				if ( error ) {
+					console.log( error );
+				}
+
+				for ( var x in data ) {
+					console.log( data[ x ].user.name + ' [@' + data[ x ].user.screen_name + '], ' + data[ x ].created_at );
+					console.log( data[ x ].text );
+					console.log( '\n' );
+				}
 			}
 		);
 	} );
