@@ -12,7 +12,7 @@ commander
 	.command('auth')
 	.description('Authenticates yourself')
 	.action(() => {
-		require('../lib/auth').auth();
+		require('../lib/auth').requestToken();
 	});
 
 commander
