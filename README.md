@@ -1,2 +1,1 @@
-#Node CLI Application
-##Twitter
+# Twitter-CLI

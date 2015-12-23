@@ -1,31 +1,29 @@
 #!/usr/bin/env node
 
-var commander = require('commander');
-var auth = require('../src/auth');
+'use strict';
+
+const commander = require('commander');
 
 commander
-	.version('0.0.0')
+	.version('1.0.0')
+	.description('Twitter client on your CLI');
 
 commander
-	.command('hi')
-	.description('Prints hi')
-	.action(function () {
-		console.log('Hi');
+	.command('auth')
+	.description('Authenticates yourself')
+	.action(() => {
+		console.log('Auth');
 	});
 
 commander
-	.command('login')
-	.description('Authenticates yourself.')
-	.action(function () {
-		auth.requestToken(function(error, requestToken, requestTokenSecret) {
-			var url = 'https://twitter.com/oauth/authorize?oauth_token=' + requestToken;
-
-			if (error) {
-				console.log('Error');
-			}
-
-			console.log('Open the link in your browser, ' + url);
-		});
+	.command('*')
+	.description('Wildcard command')
+	.action(() => {
+		commander.help();
 	});
 
 commander.parse(process.argv);
+
+if (!commander.args.length) {
+	commander.help();
+}
